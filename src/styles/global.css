@@ -602,7 +602,7 @@ nav.wrap {
 
 .site-footer {
   border-top: 1px solid var(--line);
-  padding: 40px 0 60px;
+  padding: 32px 40px 48px;
 }
 
 .footer-grid {
@@ -659,6 +659,25 @@ nav.wrap {
   }
   .field-row {
     grid-template-columns: 1fr;
+  }
+  /* Footer */
+  .footer-grid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .site-footer {
+    padding: 32px 4px 48px;
+  }
+
+  .footer-legal {
+    max-width: 100%;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
   .navlinks {

@@ -78,6 +78,15 @@ h3 {
   padding: 0 32px;
 }
 
+/* NAV VISIBILITY HELPERS (DESKTOP DEFAULT) */
+.btn.desktop-only {
+  display: inline-block !important;
+}
+
+.navlinks .navlinks-cta {
+  display: none !important;
+}
+
 /* NAV */
 .site-header {
   position: sticky;
@@ -159,10 +168,6 @@ nav.wrap {
 
 .menu-toggle.open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
-}
-
-.navlinks-cta {
-  display: none;
 }
 
 .btn {
@@ -696,13 +701,14 @@ nav.wrap {
     border-bottom: 1px solid var(--line);
   }
 
-  .navlinks-cta {
-    display: inline-block;
+  /* NAV VISIBILITY OVERRIDES (MOBILE) */
+  .navlinks .navlinks-cta {
+    display: inline-block !important;
     margin-top: 14px;
   }
 
-  .desktop-only {
-    display: none;
+  .btn.desktop-only {
+    display: none !important;
   }
 
   .menu-toggle {

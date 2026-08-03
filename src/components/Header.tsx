@@ -19,8 +19,17 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
   return (
     <header className="site-header">
       <nav className="wrap">
-        <img className="logo-mark" src={logo} alt="Opshore.co" />
+        {/* Clickable Logo leading home */}
+        <button
+          type="button"
+          className="logo-btn"
+          style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+          onClick={() => handleNavigate("home")}
+        >
+          <img className="logo-mark" src={logo} alt="Opshore.co" />
+        </button>
 
+        {/* Mobile Slide-out / Dropdown Menu */}
         <div className={`navlinks${menuOpen ? " open" : ""}`}>
           {NAV_ITEMS.map((item) => (
             <button
@@ -32,6 +41,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
               {item.label}
             </button>
           ))}
+          {/* Mobile CTA inside dropdown */}
           <button
             type="button"
             className="btn btn-primary navlinks-cta"
@@ -41,6 +51,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           </button>
         </div>
 
+        {/* Desktop CTA outside dropdown */}
         <button
           type="button"
           className="btn btn-primary desktop-only"
@@ -49,6 +60,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           Book a Free Audit
         </button>
 
+        {/* Hamburger Menu Toggle */}
         <button
           type="button"
           className={`menu-toggle${menuOpen ? " open" : ""}`}
@@ -56,9 +68,9 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </button>
       </nav>
     </header>

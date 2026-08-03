@@ -13,7 +13,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
 
   const handleNavigate = (page: PageId) => {
     onNavigate(page);
-    setMenuOpen(false); // close the menu after picking a page
+    setMenuOpen(false);
   };
 
   return (

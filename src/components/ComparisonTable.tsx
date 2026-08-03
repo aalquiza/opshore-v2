@@ -23,26 +23,28 @@ export default function ComparisonTable() {
         <div className="eyebrow">The comparison</div>
         <h2>How Opshore is different</h2>
       </div>
-      <table className="comp-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Recruitment Agencies</th>
-            <th>VA Agencies</th>
-            <th className="hi">Opshore</th>
-          </tr>
-        </thead>
-        <tbody>
-          {COMPARISON_ROWS.map((row) => (
-            <tr key={row.label}>
-              <td>{row.label}</td>
-              {renderCell(row.recruitmentAgencies, false)}
-              {renderCell(row.vaAgencies, false)}
-              {renderCell(row.opshore, true)}
+      <div className="table-scroll">
+        <table className="comp-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Recruitment Agencies</th>
+              <th>VA Agencies</th>
+              <th className="hi">Opshore</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {COMPARISON_ROWS.map((row) => (
+              <tr key={row.label}>
+                <td>{row.label}</td>
+                {renderCell(row.recruitmentAgencies, false)}
+                {renderCell(row.vaAgencies, false)}
+                {renderCell(row.opshore, true)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

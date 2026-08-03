@@ -87,6 +87,7 @@ nav.wrap {
   align-items: center;
   justify-content: space-between;
   height: 76px;
+  position: relative;
 }
 
 .logo-mark {
@@ -121,6 +122,41 @@ nav.wrap {
 .navlinks button.navlink.active {
   color: var(--ink);
   border-color: var(--steel);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  display: block;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.navlinks-cta {
+  display: none;
 }
 
 .btn {
@@ -542,14 +578,6 @@ nav.wrap {
   margin-top: 8px;
 }
 
-.legal-indent-1 {
-  margin-left: 24px;
-}
-
-.legal-indent-2 {
-  margin-left: 48px;
-}
-
 .legal-list {
   color: var(--ink-soft);
   font-size: 0.95rem;
@@ -558,6 +586,18 @@ nav.wrap {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.legal-list li {
+  list-style: disc;
+}
+
+.legal-indent-1 {
+  margin-left: 24px;
+}
+
+.legal-indent-2 {
+  margin-left: 48px;
 }
 
 .site-footer {
@@ -620,14 +660,70 @@ nav.wrap {
   .field-row {
     grid-template-columns: 1fr;
   }
+
   .navlinks {
     display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    padding: 8px 32px 16px;
   }
+
+  .navlinks.open {
+    display: flex;
+  }
+
+  .navlinks button.navlink {
+    width: 100%;
+    text-align: left;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .navlinks-cta {
+    display: inline-block;
+    margin-top: 14px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
   .hero h1 {
     font-size: 2.2rem;
   }
   .comp-table {
     font-size: 0.8rem;
+  }
+
+  /* Legal pages */
+  .legal-content {
+    max-width: 100%;
+  }
+
+  .legal-list {
+    font-size: 0.9rem;
+    padding-left: 16px;
+  }
+
+  .legal-block p {
+    font-size: 0.9rem;
+  }
+
+  .legal-indent-1 {
+    margin-left: 14px;
+  }
+
+  .legal-indent-2 {
+    margin-left: 28px;
   }
 }
 

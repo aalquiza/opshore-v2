@@ -5,6 +5,9 @@ interface LegalPageProps {
   active: boolean;
 }
 
+/**
+ * Parses markdown-style **bold** syntax into React elements
+ */
 function renderWithBold(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return parts.map((part, index) => {
@@ -15,6 +18,9 @@ function renderWithBold(text: string) {
   });
 }
 
+/**
+ * Renders individual content blocks (paragraphs or unordered lists)
+ */
 function renderBlock(block: LegalBlock, index: number) {
   if (block.type === "list") {
     return (
@@ -30,6 +36,7 @@ function renderBlock(block: LegalBlock, index: number) {
       </ul>
     );
   }
+
   return (
     <p
       key={index}
@@ -44,21 +51,21 @@ export default function LegalPage({ content, active }: LegalPageProps) {
   return (
     <section
       id={content.id}
-      className={`page${active ? " active" : ""}`}
+      className={`page wrap${active ? " active" : ""}`}
       style={{ paddingTop: 64 }}
     >
       <div className="section-head">
         <div className="eyebrow">{content.updated}</div>
         <h2>{content.title}</h2>
-        <p style={{ color: "var(--ink-soft)", fontSize: "1rem", marginTop: 14 }}>
+        <p className="legal-intro">
           {content.intro}
         </p>
       </div>
 
       <div className="legal-content">
-        {content.sections.map((section) => (
-          <div className="legal-block" key={section.heading}>
-            <h3>{section.heading}</h3>
+        {content.sections.map((section, idx) => (
+          <div className="legal-block" key={section.heading || idx}>
+            {section.heading && <h3>{section.heading}</h3>}
             {section.body.map((block, index) => renderBlock(block, index))}
           </div>
         ))}

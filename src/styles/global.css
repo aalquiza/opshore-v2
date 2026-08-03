@@ -264,8 +264,9 @@ nav.wrap {
 }
 
 .section-head {
-  max-width: 56ch;
-  margin-bottom: 40px;
+  /*max-width: 56ch;
+  margin-bottom: 40px; */
+  max-width: 100%; /* Overrides the default 56ch limit */
 }
 
 .section-head h2 {
@@ -577,11 +578,18 @@ nav.wrap {
 }
 
 /* LEGAL PAGES */
+.legal-intro {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  margin-top: 14px;
+}
+
 .legal-content {
-  max-width: 72ch;
+  max-width: 100%; /* Changed from 72ch to fill the page width */
   display: flex;
   flex-direction: column;
   gap: 28px;
+  margin-top: 40px; /* <--- Adds spacing between intro and first section */
 }
 
 .legal-block h3 {
@@ -741,6 +749,12 @@ nav.wrap {
     line-height: 1.5;
   }
 
+  .footer-copyright {
+    text-align: center;
+    max-width: 100%;
+    font-size: 0.72rem;
+  }
+
   .footer-links {
     justify-content: center;
     flex-wrap: wrap;
@@ -769,6 +783,12 @@ nav.wrap {
   .legal-indent-2 {
     margin-left: 28px;
   }
+}
+
+.footer-copyright {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  max-width: 44ch;
 }
 
 @media (prefers-reduced-motion: reduce) {

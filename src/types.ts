@@ -1,4 +1,11 @@
-export type PageId = "home" | "usecases" | "reviews" | "contact" | "terms" | "privacy" | "legal";
+export type PageId =
+  | "home"
+  | "usecases"
+  | "reviews"
+  | "contact"
+  | "terms"
+  | "privacy"
+  | "legal";
 
 export interface NavItem {
   id: PageId;
@@ -51,15 +58,16 @@ export interface ContactFormState {
   message: string;
 }
 
+/* LEGAL BLOCK TYPES */
 export interface LegalParagraph {
   type: "paragraph";
   text: string;
-  indent?: number; // 0 = normal, 1 = indented, 2 = indented further, etc.
+  indent?: number;
 }
 
 export interface LegalListItem {
   text: string;
-  indent?: number; // 0 = top level, 1 = sub-bullet, 2 = sub-sub-bullet
+  indent?: number;
 }
 
 export interface LegalList {
@@ -70,7 +78,7 @@ export interface LegalList {
 export type LegalBlock = LegalParagraph | LegalList;
 
 export interface LegalSection {
-  heading: string;
+  heading?: string;
   body: LegalBlock[];
 }
 
@@ -79,5 +87,5 @@ export interface LegalPageContent {
   title: string;
   updated: string;
   intro: string;
-  sections: LegalSection[]; 
+  sections: LegalSection[];
 }

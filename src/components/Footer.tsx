@@ -24,7 +24,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </button>
         </div>
       </div>
-      <div className="footer-legal" style={{ marginTop: 18 }}>
+      <div className="footer-copyright" style={{ marginTop: 18 }}>
         © 2026 Opshore.co
       </div>
     </footer>

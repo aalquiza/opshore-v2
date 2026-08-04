@@ -49,6 +49,8 @@ export default function ContactPage({ active }: ContactPageProps) {
       </div>
       <div className="contact-grid">
         <div className="contact-info">
+          <p>Whether you're drowning in manual tasks, scaling past what your current team can handle, or just not sure where the bottleneck actually is - that's what this conversation is for.</p>
+          <p>No pressure, no sales script. Tell us where things are breaking, and we'll tell you honestly whether we're the right fit to fix it.</p>
           <p>Fill out the form and we'll respond as soon as we can.</p>
         </div>
         <div>

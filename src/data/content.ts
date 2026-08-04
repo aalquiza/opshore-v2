@@ -141,4 +141,5 @@ export const USE_CASE_OPTIONS: { value: UseCaseOption; label: string }[] = [
   { value: "team-build-out", label: "Team Build-Out" },
   { value: "lead-gen", label: "Lead Gen" },
   { value: "marketing-ops", label: "Marketing Ops" },
+  { value: "other", label: "Other" },
 ];

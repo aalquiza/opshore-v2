@@ -47,7 +47,8 @@ export type UseCaseOption =
   | "crm-sales"
   | "team-build-out"
   | "lead-gen"
-  | "marketing-ops";
+  | "marketing-ops"
+  | "other";
 
 export interface ContactFormState {
   firstName: string;

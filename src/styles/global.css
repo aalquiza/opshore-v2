@@ -641,6 +641,21 @@ nav.wrap {
   margin-left: 48px;
 }
 
+/* Main list default (solid dots) */
+.legal-list {
+  list-style-type: disc;
+}
+
+/* First-level nested list (hollow circles) */
+.legal-list .legal-sublist {
+  list-style-type: circle;
+}
+
+/* Second-level nested list (filled squares) */
+.legal-list .legal-sublist .legal-sublist {
+  list-style-type: square;
+}
+
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 40px 0 60px;

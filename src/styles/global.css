@@ -33,7 +33,7 @@ body {
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip; /* <--- CHANGED: Replaced 'hidden' with 'clip' so position: sticky works */
   width: 100%;
 }
 
@@ -87,12 +87,12 @@ h3 {
   display: none !important;
 }
 
-/* NAV */
+/* NAV (OPTION 1: STICKY HEADER) */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.88);
+  z-index: 1000; /* <--- UPDATED: High z-index keeps header above all scrolled content */
+  background: var(--paper); /* <--- UPDATED: Uses paper color to prevent content bleed-through */
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -264,9 +264,7 @@ nav.wrap {
 }
 
 .section-head {
-  /*max-width: 56ch;
-  margin-bottom: 40px; */
-  max-width: 100%; /* Overrides the default 56ch limit */
+  max-width: 100%;
 }
 
 .section-head h2 {
@@ -573,7 +571,7 @@ nav.wrap {
 
 /* CONTACT PAGE STYLES */
 .contact-head {
-  max-width: 100% !important; /* Spans across full available page width */
+  max-width: 100% !important;
   margin-bottom: 40px;
 }
 
@@ -588,8 +586,8 @@ nav.wrap {
 }
 
 .contact-form-wrapper {
-  max-width: 640px; /* Clean, centered form container */
-  margin: 0 auto 80px auto; /* Centers the form horizontally */
+  max-width: 640px;
+  margin: 0 auto 80px auto;
   width: 100%;
 }
 
@@ -601,11 +599,11 @@ nav.wrap {
 }
 
 .legal-content {
-  max-width: 100%; /* Changed from 72ch to fill the page width */
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 28px;
-  margin-top: 40px; /* <--- Adds spacing between intro and first section */
+  margin-top: 40px;
 }
 
 .legal-block h3 {
@@ -659,7 +657,7 @@ nav.wrap {
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 40px 0 60px;
-  margin-top: 80px; /* <--- ADD THIS for desktop spacing */
+  margin-top: 80px;
 }
 
 .footer-grid {
@@ -767,7 +765,7 @@ nav.wrap {
   .site-footer {
     padding: 40px 24px 56px;
     text-align: center;
-    margin-top: 48px; /* <--- ADD THIS for mobile spacing */
+    margin-top: 48px;
   }
 
   .footer-grid {

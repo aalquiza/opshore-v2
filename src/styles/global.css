@@ -644,6 +644,7 @@ nav.wrap {
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 40px 0 60px;
+  margin-top: 80px; /* <--- ADD THIS for desktop spacing */
 }
 
 .footer-grid {
@@ -751,6 +752,7 @@ nav.wrap {
   .site-footer {
     padding: 40px 24px 56px;
     text-align: center;
+    margin-top: 48px; /* <--- ADD THIS for mobile spacing */
   }
 
   .footer-grid {

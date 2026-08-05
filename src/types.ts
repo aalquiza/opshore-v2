@@ -69,6 +69,7 @@ export interface LegalParagraph {
 export interface LegalListItem {
   text: string;
   indent?: number;
+  items?: LegalListItem[]; // Enables recursive sub-items/nested lists
 }
 
 export interface LegalList {

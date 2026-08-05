@@ -1,4 +1,4 @@
-import type { LegalBlock, LegalPageContent } from "../types";
+import type { LegalBlock, LegalListItem, LegalPageContent } from "../types";
 
 interface LegalPageProps {
   content: LegalPageContent;
@@ -19,20 +19,34 @@ function renderWithBold(text: string) {
 }
 
 /**
+ * Renders list items recursively to support lists inside lists
+ */
+function renderListItems(items: LegalListItem[]) {
+  return items.map((item, i) => (
+    <li
+      key={i}
+      className={item.indent ? `legal-indent-${item.indent}` : undefined}
+    >
+      {renderWithBold(item.text)}
+
+      {/* Render sub-list recursively if sub-items exist */}
+      {item.items && item.items.length > 0 && (
+        <ul className="legal-list legal-sublist">
+          {renderListItems(item.items)}
+        </ul>
+      )}
+    </li>
+  ));
+}
+
+/**
  * Renders individual content blocks (paragraphs or unordered lists)
  */
 function renderBlock(block: LegalBlock, index: number) {
   if (block.type === "list") {
     return (
       <ul className="legal-list" key={index}>
-        {block.items.map((item, i) => (
-          <li
-            key={i}
-            className={item.indent ? `legal-indent-${item.indent}` : undefined}
-          >
-            {renderWithBold(item.text)}
-          </li>
-        ))}
+        {renderListItems(block.items)}
       </ul>
     );
   }
@@ -57,9 +71,7 @@ export default function LegalPage({ content, active }: LegalPageProps) {
       <div className="section-head">
         <div className="eyebrow">{content.updated}</div>
         <h2>{content.title}</h2>
-        <p className="legal-intro">
-          {content.intro}
-        </p>
+        <p className="legal-intro">{content.intro}</p>
       </div>
 
       <div className="legal-content">

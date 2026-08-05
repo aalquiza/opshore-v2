@@ -62,6 +62,27 @@ export const TERMS_CONTENT: LegalPageContent = {
         },
       ],
     },
+    {
+      heading: "4. Fees and payments",
+      body: [
+        {
+          type: "list",
+          items: [
+            { text: "Fees for services are set out in your proposal, invoice, or retainer agreement.", indent: 1 },
+            { 
+              text: "**Payment terms:**", 
+              indent: 1,
+              items: [
+                {text: "Project-based: 30% upfront, 70% upon completion and delivery.", indent: 2},
+                {text: "Ongoing retainer: Payment is due net 15 days from the invoice date.", indent: 2},
+              ]
+            },
+            { text: "Late payments may incur interest at 8% per year. We may suspend services until payment is cleared.", indent: 1 },
+            { text: "You are responsible for any bank transfer fees or currency‑conversion costs.", indent: 1 },
+          ],
+        },
+      ],
+    },
   ],
 };
 

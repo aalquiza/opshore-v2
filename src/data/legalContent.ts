@@ -39,6 +39,27 @@ export const TERMS_CONTENT: LegalPageContent = {
             { text: "Other managed operations services agreed with you in writing.", indent: 1 },
           ],
         },
+        {
+          type: "paragraph",
+          text: "Services are provided on a project-based or retainer-based model, as specified in your quotation, proposal, or contract.",
+        },
+      ],
+    },
+    {
+      heading: "3. Customer obligations",
+      body: [
+        {
+          type: "paragraph",
+          text: "You agree to:",
+        },
+        {
+          type: "list",
+          items: [
+            { text: "Provide accurate and up-to-date information about your business, team, and requirements.", indent: 1 },
+            { text: "Treat Opshore.co team members and processes in a professional manner.", indent: 1 },
+            { text: "Comply with all applicable laws, including data-protection and employment-related rules in your jurisdiction.", indent: 1 },
+          ],
+        },
       ],
     },
   ],

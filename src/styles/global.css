@@ -642,17 +642,17 @@ nav.wrap {
 }
 
 /* Main list default (solid dots) */
-.legal-list {
+.legal-list > li {
   list-style-type: disc;
 }
 
 /* First-level nested list (hollow circles) */
-.legal-list .legal-sublist {
+.legal-list .legal-sublist > li {
   list-style-type: circle;
 }
 
 /* Second-level nested list (filled squares) */
-.legal-list .legal-sublist .legal-sublist {
+.legal-list .legal-sublist .legal-sublist > li {
   list-style-type: square;
 }
 

@@ -83,6 +83,86 @@ export const TERMS_CONTENT: LegalPageContent = {
         },
       ],
     },
+    {
+      heading: "5. Changes to scope or timing",
+      body: [
+        {
+          type: "paragraph",
+          text: "If you request changes to the scope of work, timelines, or deliverables, we may adjust the fee and schedule. Any changes should be confirmed in writing before we proceed.",
+        },
+      ],
+    },
+    {
+      heading: "6. Intellectual property",
+      body: [
+        {
+          type: "paragraph",
+          text: "Pre-existing materials and tools created by Opshore.co remain our property. Custom deliverables created specifically for you may be licensed to you under the terms of your contract. You retain ownership of your own brand, logos, and core business assets.",
+        },
+      ],
+    },
+    {
+      heading: "7. Confidentiality",
+      body: [
+        {
+          type: "paragraph",
+          text: "Both parties agree to keep the other's confidential information (business plans, client data, processes, etc.) private. This obligation survives the end of your contract.",
+        },
+      ],
+    },
+    {
+      heading: "8. Data protection and GDPR",
+      body: [
+        {
+          type: "paragraph",
+          text: "We process personal data in accordance with our Privacy Policy and applicable data-protection laws (including GDPR). You warrant that you have the right to share any personal data with us.",
+        },
+      ],
+    },
+    {
+      heading: "9. Limitation of liability",
+      body: [
+        {
+          type: "paragraph",
+          text: "To the extent permitted by Irish law, our total liability is limited to the fees you have paid to us in the last 12 months. We are not liable for indirect damages or issues arising from third-party tools.",
+        },
+      ],
+    },
+    {
+      heading: "10. Termination and notice",
+      body: [
+        {
+          type: "list",
+          items: [
+            { text: "**Project-based:** Ends automatically once deliverables are completed and accepted.", indent: 1 },
+            { text: "**Retainer-based:** Either party may terminate with 30 days written notice.", indent: 1 },
+            { text: "Upon termination, you must pay any fees due for work performed.", indent: 1 },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "11. Governing law and jurisdiction",
+      body: [
+        {
+          type: "paragraph",
+          text: "These Terms are governed by the laws of **Ireland**. The courts of Ireland have exclusive jurisdiction over any disputes.",
+        },
+      ],
+    },
+    {
+      heading: "12. Changes to these Terms",
+      body: [
+        {
+          type: "paragraph",
+          text: "We may update these Terms from time to time. Any changes will be posted on this page. Continued use of our services after changes are posted means you accept the updated Terms.",
+        },
+        {
+          type: "paragraph",
+          text: "**Contact:** For questions about these Terms, please contact: info@opshore.co",
+        },
+      ],
+    },
   ],
 };
 

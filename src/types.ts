@@ -75,14 +75,17 @@ export interface LegalListItem {
 export interface LegalList {
   type: "list";
   items: LegalListItem[];
+  listStyle?: "disc" | "none"; // <-- Optional list style toggle
 }
 
 export interface LegalContact {
   type: "contact";
-  email: string;
+  email?: string;       // Optional email address
+  href?: string;        // Optional URL/anchor or route (e.g., "#contact" or "/contact")
+  linkText?: string;    // Text for the link/button if different from email/href
   label?: string;
   text?: string;
-  hasLine?: boolean; // Controls whether a top divider line is rendered
+  hasLine?: boolean;
 }
 
 export type LegalBlock = LegalParagraph | LegalList | LegalContact;

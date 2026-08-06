@@ -42,30 +42,69 @@ function renderListItems(items: LegalListItem[]) {
 /**
  * Renders individual content blocks (paragraphs, lists, or contact info)
  */
-function renderBlock(block: LegalBlock, index: number) {
+/*function renderBlock(block: LegalBlock, index: number) {
   if (block.type === "list") {
     return (
       <ul className="legal-list" key={index}>
         {renderListItems(block.items)}
       </ul>
     );
-  }
+  }*/
 
+function renderBlock(block: LegalBlock, index: number) {
+  if (block.type === "list") {
+    const listStyleClass = block.listStyle ? `list-style-${block.listStyle}` : "";
+    
+    return (
+      <ul className={`legal-list ${listStyleClass}`.trim()} key={index}>
+        {renderListItems(block.items)}
+      </ul>
+    );
+  }
+  
+  //if (block.type === "contact") {
+  //  return (
+  //    <p
+  //      key={index}
+  //      className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
+  //    >
+  //      {/* Only render label if it exists */}
+  //      {block.label && <strong>{block.label}: </strong>}
+  //
+  //      {/* Render text or default text if label is missing too */}
+  //      {block.text ? `${block.text} ` : "For inquiries, please contact: "}
+  //
+  //      <a href={`mailto:${block.email}`}>
+  //        <strong>{block.email}</strong>
+  //      </a>
+  //    </p>
+  //  );
+  //}
   if (block.type === "contact") {
     return (
       <p
         key={index}
         className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
       >
-        {/* Only render label if it exists */}
+        {/* Optional Label */}
         {block.label && <strong>{block.label}: </strong>}
   
-        {/* Render text or default text if label is missing too */}
+        {/* Description text */}
         {block.text ? `${block.text} ` : "For inquiries, please contact: "}
   
-        <a href={`mailto:${block.email}`}>
-          <strong>{block.email}</strong>
-        </a>
+        {/* Scenario A: Email link */}
+        {block.email && (
+          <a href={`mailto:${block.email}`}>
+            <strong>{block.linkText || block.email}</strong>
+          </a>
+        )}
+  
+        {/* Scenario B: Navigation Page Link */}
+        {!block.email && block.href && (
+          <a href={block.href}>
+            <strong>{block.linkText || "Contact Us"}</strong>
+          </a>
+        )}
       </p>
     );
   }

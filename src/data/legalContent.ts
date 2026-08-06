@@ -315,21 +315,46 @@ export const LEGAL_CONTENT: LegalPageContent = {
   intro: "Company and registration details for Opshore.co.",
   sections: [
     {
-      heading: "Trading name",
       body: [
         {
           type: "paragraph",
-          text: "Opshore.co is a trading name of Apexa Teoranta.",
+          text: "Opshore.co is a trading name of **Apexa Teoranta,** a private company limited by shares registered in Ireland.",
+        },
+        {
+          type: "list",
+          listStyle: "none",
+          items: [
+            { text: "**Full legal name:** Apexa Teoranta"},
+            { text: "**Registered office:** Castlemartyr, Cork, Ireland"},
+            { text: "**Country of registration:** Ireland"},
+            { text: "**CRO number:** 811040"},
+          ],
         },
       ],
     },
     {
-      heading: "Registration",
       body: [
         {
           type: "paragraph",
-          text: "Registered in Ireland. Company registration number: CRO 811040.",
+          text: "This website and its services are operated by Apexa Teoranta.",
         },
+        {
+          type: "contact",
+          text: "For any legal or contractual questions, please contact:",
+          email: "admin@apexa.ie",
+          hasLine: false,
+        }
+      ],
+    },
+    {
+      body: [
+        {
+          type: "contact",
+          text: "GDPR-related information and data-processing details are set out in the **Privacy Policy**, which can be accessed here:",
+          href: "#privacy",
+          linkText: "Privacy Policy",
+          hasLine: true,
+        }
       ],
     },
   ],

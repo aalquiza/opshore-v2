@@ -57,9 +57,15 @@ function renderBlock(block: LegalBlock, index: number) {
         key={index}
         className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
       >
-        <strong>{block.label || "Contact"}:</strong>{" "}
+        {/* Only render label if it exists */}
+        {block.label && <strong>{block.label}: </strong>}
+  
+        {/* Render text or default text if label is missing too */}
         {block.text ? `${block.text} ` : "For inquiries, please contact: "}
-        <a href={`mailto:${block.email}`}><strong>{block.email}</strong></a>
+  
+        <a href={`mailto:${block.email}`}>
+          <strong>{block.email}</strong>
+        </a>
       </p>
     );
   }

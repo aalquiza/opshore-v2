@@ -78,7 +78,7 @@ export const TERMS_CONTENT: LegalPageContent = {
               ]
             },
             { text: "Late payments may incur interest at 8% per year. We may suspend services until payment is cleared.", indent: 1 },
-            { text: "You are responsible for any bank transfer fees or currency‑conversion costs.", indent: 1 },
+            { text: "You are responsible for any bank transfer fees or currency-conversion costs.", indent: 1 },
           ],
         },
       ],
@@ -158,9 +158,12 @@ export const TERMS_CONTENT: LegalPageContent = {
           text: "We may update these Terms from time to time. Any changes will be posted on this page. Continued use of our services after changes are posted means you accept the updated Terms.",
         },
         {
-          type: "paragraph",
-          text: "**Contact:** For questions about these Terms, please contact: info@opshore.co",
-        },
+          type: "contact",
+          label: "Contact",
+          text: "For questions about these Terms, please contact:",
+          email: "info@opshore.co",
+          hasLine: false,
+        }
       ],
     },
   ],
@@ -185,9 +188,11 @@ export const PRIVACY_CONTENT: LegalPageContent = {
           text: "Registered office: Castlemartyr, Cork, Ireland",
         },
         {
-          type: "paragraph",
-          text: "For questions about data protection, contact: **info@opshore.co**",
-        },
+          type: "contact",
+          text: "For questions about data protection, contact:",
+          email: "info@opshore.co",
+          hasLine: false,
+        }
       ],
     },
     {
@@ -265,8 +270,14 @@ export const PRIVACY_CONTENT: LegalPageContent = {
       body: [
         {
           type: "paragraph",
-          text: "Under GDPR, you have the right to access, correct, delete, or restrict processing of your data. To exercise these rights, contact us at: **privacy@opshore.co**",
+          text: "Under GDPR, you have the right to access, correct, delete, or restrict processing of your data.",
         },
+        {
+          type: "contact",
+          text: "To exercise these rights, contact us at:",
+          email: "privacy@opshore.co",
+          hasLine: false,
+        }
       ],
     },
     {
@@ -289,7 +300,7 @@ export const PRIVACY_CONTENT: LegalPageContent = {
           type: "contact",
           label: "Contact",
           text: "For privacy inquiries, please contact:",
-          email: "**info@opshore.co**",
+          email: "info@opshore.co",
           hasLine: true,
         }
       ],

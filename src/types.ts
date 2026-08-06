@@ -77,7 +77,15 @@ export interface LegalList {
   items: LegalListItem[];
 }
 
-export type LegalBlock = LegalParagraph | LegalList;
+export interface LegalContact {
+  type: "contact";
+  email: string;
+  label?: string;
+  text?: string;
+  hasLine?: boolean; // Controls whether a top divider line is rendered
+}
+
+export type LegalBlock = LegalParagraph | LegalList | LegalContact;
 
 export interface LegalSection {
   heading?: string;

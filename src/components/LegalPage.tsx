@@ -40,7 +40,7 @@ function renderListItems(items: LegalListItem[]) {
 }
 
 /**
- * Renders individual content blocks (paragraphs or unordered lists)
+ * Renders individual content blocks (paragraphs, lists, or contact info)
  */
 function renderBlock(block: LegalBlock, index: number) {
   if (block.type === "list") {
@@ -51,6 +51,20 @@ function renderBlock(block: LegalBlock, index: number) {
     );
   }
 
+  if (block.type === "contact") {
+    return (
+      <p
+        key={index}
+        className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
+      >
+        <strong>{block.label || "Contact"}:</strong>{" "}
+        {block.text ? `${block.text} ` : "For inquiries, please contact: "}
+        <a href={`mailto:${block.email}`}>{block.email}</a>
+      </p>
+    );
+  }
+
+  // Handle paragraph block
   return (
     <p
       key={index}

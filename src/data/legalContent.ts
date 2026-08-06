@@ -174,12 +174,124 @@ export const PRIVACY_CONTENT: LegalPageContent = {
     "This Privacy Policy explains how Opshore.co (Apexa Teoranta) collects, uses, and protects your personal data.",
   sections: [
     {
-      heading: "1. Information we collect",
+      heading: "1. Who we are",
       body: [
         {
           type: "paragraph",
-          text: "We collect information you submit through our contact form, such as your name, email, and message.",
+          text: "This Privacy Policy applies to **Opshore.co**, a trading name of **Apexa Teoranta**, a private company limited by shares registered in Ireland (CRO 811040).",
         },
+        {
+          type: "paragraph",
+          text: "Registered office: Castlemartyr, Cork, Ireland",
+        },
+        {
+          type: "paragraph",
+          text: "For questions about data protection, contact: **info@opshore.co**",
+        },
+      ],
+    },
+    {
+      heading: "2. What data we collect",
+      body: [
+        {
+          type: "paragraph",
+          text: "We may collect the following personal data when you contact us, sign up for services, or use our website:",
+        },
+        {
+          type: "list",
+          items: [
+            { text: "Name and contact details (email, phone number, country).", indent: 1 },
+            { text: "Company name, role, and information about your business or project.", indent: 1 },
+            { text: "IP address, browser type, and basic usage data for analytics and security.", indent: 1 },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "3. Why we process your data",
+      body: [
+        {
+          type: "paragraph",
+          text: "We process your data for the following purposes:",
+        },
+        {
+          type: "list",
+          items: [
+            { text: "To provide and deliver our operations-as-a-service to clients.", indent: 1 },
+            { text: "To respond to sales, onboarding, and support inquiries.", indent: 1 },
+            { text: "To manage contracts, invoices, and payments.", indent: 1 },
+            { text: "To improve our website, products, and marketing communications.", indent: 1 },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "4. Data sharing and tools",
+      body: [
+        {
+          type: "paragraph",
+          text: "We may share your data with trusted service providers that help us run the business, including:",
+        },
+        {
+          type: "list",
+          items: [
+            { text: "**Apollo:** For prospecting and outreach.", indent: 1 },
+            { text: "**Zoho CRM:** For contact management and operations.", indent: 1 },
+            { text: "**Payment Processors:** For invoicing and payments.", indent: 1 },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "5. International data transfers",
+      body: [
+        {
+          type: "paragraph",
+          text: "Some of your data may be transferred outside the EU/EEA (e.g., for recruitment in the Philippines or Pakistan). We use appropriate safeguards such as contractual clauses approved by the EU Commission.",
+        },
+      ],
+    },
+    {
+      heading: "6. Data retention",
+      body: [
+        {
+          type: "paragraph",
+          text: "We keep your data for as long as needed to provide services and comply with legal obligations. Client records are kept for at least 7 years to meet Irish tax requirements.",
+        },
+      ],
+    },
+    {
+      heading: "7. Your rights (EU/EEA)",
+      body: [
+        {
+          type: "paragraph",
+          text: "Under GDPR, you have the right to access, correct, delete, or restrict processing of your data. To exercise these rights, contact us at: **privacy@opshore.co**",
+        },
+      ],
+    },
+    {
+      heading: "8. Cookies and tracking",
+      body: [
+        {
+          type: "paragraph",
+          text: "Our website may use cookies to remember your preferences and analyze traffic. You can manage cookie preferences through your browser settings.",
+        },
+      ],
+    },
+    {
+      heading: "9. Changes to this policy",
+      body: [
+        {
+          type: "paragraph",
+          text: "We may update this Privacy Policy from time to time. Any changes will be posted on this page with a new “Last updated” date.",
+        },
+        {
+          type: "contact",
+          label: "Contact",
+          text: "For privacy inquiries, please contact:",
+          email: "**info@opshore.co**",
+          hasLine: true,
+        }
       ],
     },
   ],

@@ -831,3 +831,17 @@ nav.wrap {
     stroke-dashoffset: 0 !important;
   }
 }
+
+/* CONTACT BLOCK IN LEGAL PAGES */
+.legal-contact-block {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
+/* CONDITIONAL DIVIDER LINE */
+.legal-contact-block.has-divider {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  margin-top: 32px;
+}

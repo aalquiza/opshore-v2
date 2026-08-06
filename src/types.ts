@@ -82,6 +82,7 @@ export interface LegalContact {
   type: "contact";
   email?: string;       // Optional email address
   href?: string;        // Optional URL/anchor or route (e.g., "#contact" or "/contact")
+  pageId?: PageId;      // <--- Target page ID (e.g., "privacy", "contact", "terms")
   linkText?: string;    // Text for the link/button if different from email/href
   label?: string;
   text?: string;

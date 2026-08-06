@@ -1,8 +1,9 @@
-import type { LegalBlock, LegalListItem, LegalPageContent } from "../types";
+import type { LegalBlock, LegalListItem, LegalPageContent, PageId } from "../types";
 
 interface LegalPageProps {
   content: LegalPageContent;
   active: boolean;
+  onNavigate?: (page: PageId) => void;
 }
 
 /**
@@ -39,88 +40,71 @@ function renderListItems(items: LegalListItem[]) {
   ));
 }
 
-/**
- * Renders individual content blocks (paragraphs, lists, or contact info)
- */
-/*function renderBlock(block: LegalBlock, index: number) {
-  if (block.type === "list") {
-    return (
-      <ul className="legal-list" key={index}>
-        {renderListItems(block.items)}
-      </ul>
-    );
-  }*/
+export default function LegalPage({ content, active, onNavigate }: LegalPageProps) {
+  /**
+   * Renders individual content blocks (paragraphs, lists, or contact info)
+   */
+  function renderBlock(block: LegalBlock, index: number) {
+    if (block.type === "list") {
+      const listStyleClass = block.listStyle ? `list-style-${block.listStyle}` : "";
 
-function renderBlock(block: LegalBlock, index: number) {
-  if (block.type === "list") {
-    const listStyleClass = block.listStyle ? `list-style-${block.listStyle}` : "";
-    
-    return (
-      <ul className={`legal-list ${listStyleClass}`.trim()} key={index}>
-        {renderListItems(block.items)}
-      </ul>
-    );
-  }
-  
-  //if (block.type === "contact") {
-  //  return (
-  //    <p
-  //      key={index}
-  //      className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
-  //    >
-  //      {/* Only render label if it exists */}
-  //      {block.label && <strong>{block.label}: </strong>}
-  //
-  //      {/* Render text or default text if label is missing too */}
-  //      {block.text ? `${block.text} ` : "For inquiries, please contact: "}
-  //
-  //      <a href={`mailto:${block.email}`}>
-  //        <strong>{block.email}</strong>
-  //      </a>
-  //    </p>
-  //  );
-  //}
-  if (block.type === "contact") {
+      return (
+        <ul className={`legal-list ${listStyleClass}`.trim()} key={index}>
+          {renderListItems(block.items)}
+        </ul>
+      );
+    }
+
+    if (block.type === "contact") {
+      return (
+        <p
+          key={index}
+          className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
+        >
+          {/* Optional Label (Supports **bold**) */}
+          {block.label && <strong>{renderWithBold(block.label)}: </strong>}
+
+          {/* Description Text (Supports **bold**) */}
+          {block.text
+            ? renderWithBold(`${block.text} `)
+            : "For inquiries, please contact: "}
+
+          {/* Email Link */}
+          {block.email && (
+            <a href={`mailto:${block.email}`}>
+              <strong>{block.linkText ? renderWithBold(block.linkText) : block.email}</strong>
+            </a>
+          )}
+
+          {/* Internal Page Link / Navigation */}
+          {!block.email && (block.pageId || block.href) && (
+            <a
+              href={block.href || `#${block.pageId}`}
+              onClick={(e) => {
+                if (block.pageId && onNavigate) {
+                  e.preventDefault();
+                  onNavigate(block.pageId);
+                }
+              }}
+            >
+              <strong>{block.linkText ? renderWithBold(block.linkText) : "Contact Us"}</strong>
+            </a>
+          )}
+        </p>
+      );
+    }
+
+    // Handle paragraph block
     return (
       <p
         key={index}
-        className={`legal-contact-block ${block.hasLine ? "has-divider" : ""}`}
+        className={block.indent ? `legal-indent-${block.indent}` : undefined}
       >
-        {/* Optional Label */}
-        {block.label && <strong>{block.label}: </strong>}
-  
-        {/* Description text */}
-        {block.text ? `${block.text} ` : "For inquiries, please contact: "}
-  
-        {/* Scenario A: Email link */}
-        {block.email && (
-          <a href={`mailto:${block.email}`}>
-            <strong>{block.linkText || block.email}</strong>
-          </a>
-        )}
-  
-        {/* Scenario B: Navigation Page Link */}
-        {!block.email && block.href && (
-          <a href={block.href}>
-            <strong>{block.linkText || "Contact Us"}</strong>
-          </a>
-        )}
+        {renderWithBold(block.text)}
       </p>
     );
   }
 
-  // Handle paragraph block
-  return (
-    <p
-      key={index}
-      className={block.indent ? `legal-indent-${block.indent}` : undefined}
-    >
-      {renderWithBold(block.text)}
-    </p>
-  );
-}
-
-export default function LegalPage({ content, active }: LegalPageProps) {
   return (
     <section
       id={content.id}

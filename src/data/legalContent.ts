@@ -351,7 +351,7 @@ export const LEGAL_CONTENT: LegalPageContent = {
         {
           type: "contact",
           text: "GDPR-related information and data-processing details are set out in the **Privacy Policy**, which can be accessed here:",
-          href: "#privacy",
+          pageId: "privacy",
           linkText: "Privacy Policy",
           hasLine: true,
         }

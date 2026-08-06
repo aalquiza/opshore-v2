@@ -59,7 +59,7 @@ function renderBlock(block: LegalBlock, index: number) {
       >
         <strong>{block.label || "Contact"}:</strong>{" "}
         {block.text ? `${block.text} ` : "For inquiries, please contact: "}
-        <a href={`mailto:${block.email}`}>{block.email}</a>
+        <a href={`mailto:${block.email}`}><strong>{block.email}</strong></a>
       </p>
     );
   }

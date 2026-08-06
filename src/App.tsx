@@ -30,10 +30,22 @@ export default function App() {
         <ReviewsPage active={page === "reviews"} />
         <ContactPage active={page === "contact"} />
 
-        <LegalPage content={TERMS_CONTENT} active={page === "terms"} />
-        <LegalPage content={PRIVACY_CONTENT} active={page === "privacy"} />
-        <LegalPage content={LEGAL_CONTENT} active={page === "legal"} />
-
+        {/* Added onNavigate={goTo} to all LegalPage components */}
+        <LegalPage
+          content={TERMS_CONTENT}
+          active={page === "terms"}
+          onNavigate={goTo}
+        />
+        <LegalPage
+          content={PRIVACY_CONTENT}
+          active={page === "privacy"}
+          onNavigate={goTo}
+        />
+        <LegalPage
+          content={LEGAL_CONTENT}
+          active={page === "legal"}
+          onNavigate={goTo}
+        />
       </main>
       <Footer onNavigate={goTo} />
     </>

@@ -1,5 +1,9 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/((?!api/|_next/|assets/|@vite|@react-refresh).* )",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 
@@ -17,14 +19,16 @@ export default async function handler(
     return res.status(400).json({ error: "Required fields missing." });
   }
 
-  // Create Zoho SMTP transporter
+  console.log("ZOHO_EMAIL check:", process.env.ZOHO_EMAIL);
+  console.log("ZOHO_PASSWORD check:", process.env.ZOHO_PASSWORD ? "Loaded (exists)" : "UNDEFINED / EMPTY");
+  
   const transporter = nodemailer.createTransport({
-    host: "smtp.zoho.com", // Or smtp.zoho.eu if using European data center
-    port: 587,
-    secure: false, // true for 465, false for 587
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.ZOHO_EMAIL,
-      pass: process.env.ZOHO_PASSWORD, // Use Zoho App Password
+      pass: process.env.ZOHO_PASSWORD,
     },
   });
 

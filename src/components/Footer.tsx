@@ -22,6 +22,16 @@ export default function Footer({ onNavigate }: FooterProps) {
           <button type="button" onClick={() => onNavigate("privacy")}>
             Privacy Policy
           </button>
+          {/* Cookie Preferences Reset Button */}
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.removeItem("cookie_consent");
+              window.location.reload(); // Reloads page so banner appears again
+            }}
+          >
+            Cookie Preferences
+          </button>
         </div>
       </div>
       <div className="footer-copyright" style={{ marginTop: 18 }}>

@@ -65,6 +65,7 @@ export default function ContactPage({ active }: ContactPageProps) {
               <input
                 id="fname"
                 type="text"
+                autoComplete="given-name"
                 required
                 value={form.firstName}
                 onChange={updateField("firstName")}
@@ -75,6 +76,7 @@ export default function ContactPage({ active }: ContactPageProps) {
               <input
                 id="lname"
                 type="text"
+                autoComplete="family-name"
                 required
                 value={form.lastName}
                 onChange={updateField("lastName")}
@@ -86,6 +88,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             <input
               id="email"
               type="email"
+              autoComplete="email"
               required
               value={form.email}
               onChange={updateField("email")}
@@ -96,6 +99,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             <input
               id="website"
               type="url"
+              autoComplete="url"
               placeholder="https://"
               value={form.website}
               onChange={updateField("website")}
@@ -105,6 +109,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             <label htmlFor="usecase">Use case</label>
             <select
               id="usecase"
+              autoComplete="off"
               value={form.useCase}
               onChange={updateField("useCase")}
             >
@@ -120,6 +125,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             <label htmlFor="message">Message</label>
             <textarea
               id="message"
+              autoComplete="off"
               placeholder="Tell us a bit about what you're running into"
               value={form.message}
               onChange={updateField("message")}

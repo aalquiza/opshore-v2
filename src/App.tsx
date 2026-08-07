@@ -7,6 +7,7 @@ import ReviewsPage from "./components/ReviewsPage";
 import ContactPage from "./components/ContactPage";
 import LegalPage from "./components/LegalPage";
 import Footer from "./components/Footer";
+import CookieBanner from "./components/CookieBanner";
 import {
   LEGAL_CONTENT,
   PRIVACY_CONTENT,
@@ -48,6 +49,10 @@ export default function App() {
         />
       </main>
       <Footer onNavigate={goTo} />
+
+      {/* Floating Cookie Consent Banner */}
+      <CookieBanner onNavigate={goTo} />
+      
     </>
   );
 }

@@ -19,9 +19,6 @@ export default async function handler(
     return res.status(400).json({ error: "Required fields missing." });
   }
 
-  console.log("ZOHO_EMAIL check:", process.env.ZOHO_EMAIL);
-  console.log("ZOHO_PASSWORD check:", process.env.ZOHO_PASSWORD ? "Loaded (exists)" : "UNDEFINED / EMPTY");
-  
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.com",
     port: 465,
@@ -33,21 +30,53 @@ export default async function handler(
   });
 
   try {
-    await transporter.sendMail({
+    const fullName = `${firstName} ${lastName}`;
+
+    // 1. Internal Notification Email (To You)
+    const adminMailOptions = {
       from: `"Opshore Contact Form" <${process.env.ZOHO_EMAIL}>`,
-      to: process.env.ZOHO_EMAIL, // Where you want to receive inquiries
+      to: process.env.ZOHO_EMAIL,
       replyTo: email,
-      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+      subject: `New Contact Form Submission from ${fullName}`,
       html: `
         <h2>New Contact Inquiry</h2>
-        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Website:</strong> ${website || "N/A"}</p>
         <p><strong>Use Case:</strong> ${useCase || "N/A"}</p>
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p>${message || "N/A"}</p>
       `,
-    });
+    };
+
+    // 2. Auto-Reply Confirmation Email (To Submitter)
+    const userAutoReplyOptions = {
+      from: `"Opshore" <${process.env.ZOHO_EMAIL}>`,
+      to: email,
+      replyTo: process.env.ZOHO_EMAIL,
+      subject: "Thank you for contacting Opshore",
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e4; border-radius: 8px;">
+          <h2 style="color: #111;">Hi ${firstName},</h2>
+          <p>Thank you for reaching out to <strong>Opshore</strong>! We've received your message and our team will review it shortly.</p>
+          <p>We typically respond within <strong>24 business hours</strong>.</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="font-size: 0.9em; color: #666;">
+            <strong>A summary of your inquiry:</strong><br />
+            <strong>Use Case:</strong> ${useCase || "N/A"}<br />
+            <strong>Website:</strong> ${website || "N/A"}
+          </p>
+          <br />
+          <p>Best regards,<br /><strong>The Opshore Team</strong></p>
+        </div>
+      `,
+    };
+
+    // Send both emails concurrently
+    await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(userAutoReplyOptions),
+    ]);
 
     return res.status(200).json({ success: true, message: "Email sent successfully!" });
   } catch (error) {

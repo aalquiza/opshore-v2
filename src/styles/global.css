@@ -856,6 +856,18 @@ nav.wrap {
   list-style-type: none !important;
 }
 
+/* Define Keyframe Animations */
+@keyframes cookieSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px); /* Start lower and transparent */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);    /* Slide to final position */
+  }
+}
+
 /* Cookie Banner Floating Bar */
 .cookie-banner {
   position: fixed;
@@ -871,6 +883,24 @@ nav.wrap {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
   z-index: 9999;
   border: 1px solid #374151;
+
+  /* Smooth Entrance Animation */
+  animation: cookieSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cookieSlideDown {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
+
+.cookie-banner.closing {
+  animation: cookieSlideDown 0.3s ease-in forwards;
 }
 
 .cookie-content {

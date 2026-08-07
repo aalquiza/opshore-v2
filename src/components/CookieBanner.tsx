@@ -7,6 +7,7 @@ interface CookieBannerProps {
 
 export default function CookieBanner({ onNavigate }: CookieBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     // Check if user has already made a choice
@@ -16,20 +17,20 @@ export default function CookieBanner({ onNavigate }: CookieBannerProps) {
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem("cookie_consent", "accepted");
-    setIsVisible(false);
-  };
-
-  const handleDecline = () => {
-    localStorage.setItem("cookie_consent", "declined");
-    setIsVisible(false);
+  const handleChoice = (preference: "accepted" | "declined") => {
+    localStorage.setItem("cookie_consent", preference);
+    setIsClosing(true);
+    
+    // Wait for the exit animation duration (300ms) before unmounting
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 300);
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="cookie-banner wrap">
+    <div className={`cookie-banner wrap${isClosing ? " closing" : ""}`}>
       <div className="cookie-content">
         <p>
           We use cookies to improve your experience and analyze site traffic.
@@ -47,14 +48,14 @@ export default function CookieBanner({ onNavigate }: CookieBannerProps) {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={handleDecline}
+            onClick={() => handleChoice("declined")}
           >
             Decline
           </button>
           <button
             type="button"
             className="btn btn-primary"
-            onClick={handleAccept}
+            onClick={() => handleChoice("accepted")}
           >
             Accept
           </button>

@@ -19,6 +19,8 @@ const INITIAL_STATE: ContactFormState = {
 export default function ContactPage({ active }: ContactPageProps) {
   const [form, setForm] = useState<ContactFormState>(INITIAL_STATE);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const updateField =
     <K extends keyof ContactFormState>(field: K) =>
@@ -30,11 +32,34 @@ export default function ContactPage({ active }: ContactPageProps) {
       setForm((prev) => ({ ...prev, [field]: event.target.value }));
     };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // In a real deployment this would call an API endpoint.
-    setSubmitted(true);
-    setForm(INITIAL_STATE);
+    setLoading(true);
+    setError("");
+    setSubmitted(false);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+        setForm(INITIAL_STATE);
+      } else {
+        setError(result.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -131,9 +156,21 @@ export default function ContactPage({ active }: ContactPageProps) {
               onChange={updateField("message")}
             />
           </div>
-          <button className="btn btn-primary" type="submit" style={{ width: "100%" }}>
-            Submit
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={loading}
+            style={{ width: "100%" }}
+          >
+            {loading ? "Sending..." : "Submit"}
           </button>
+          
+          {error && (
+            <div className="error-message" style={{ color: "#ef4444", marginTop: 12 }}>
+              {error}
+            </div>
+          )}
+
           <div className={`confirm${submitted ? " visible" : ""}`}>
             Thanks for submitting — we'll be in touch.
           </div>

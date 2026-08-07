@@ -11,12 +11,15 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "nodemailer": "^9.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/nodemailer": "^8.0.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vercel/node": "^5.9.5",
     "@vitejs/plugin-react": "^4.3.1",
     "gh-pages": "^6.3.0",
     "typescript": "^5.5.4",

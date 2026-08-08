@@ -31,6 +31,7 @@ export default async function handler(
 
   try {
     const fullName = `${firstName} ${lastName}`;
+    const fromAddress = process.env.ZOHO_FROM_EMAIL || process.env.ZOHO_EMAIL;
 
     // 1. Internal Notification Email (To You)
     const adminMailOptions = {
@@ -51,9 +52,11 @@ export default async function handler(
 
     // 2. Auto-Reply Confirmation Email (To Submitter)
     const userAutoReplyOptions = {
-      from: `"Opshore" <${process.env.ZOHO_EMAIL}>`,
+      //from: `"Opshore" <${process.env.ZOHO_EMAIL}>`,
+      from: `"Opshore" <${fromAddress}>`,
       to: email,
-      replyTo: process.env.ZOHO_EMAIL,
+      //replyTo: process.env.ZOHO_EMAIL,
+      replyTo: fromAddress,
       subject: "Thank you for contacting Opshore",
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e4e4e4; border-radius: 8px;">

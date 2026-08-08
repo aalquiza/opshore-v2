@@ -19,6 +19,12 @@ export default async function handler(
     return res.status(400).json({ error: "Required fields missing." });
   }
 
+  // Normalize website URL if provided without http:// or https://
+  let formattedWebsite = website ? website.trim() : "";
+  if (formattedWebsite && !/^https?:\/\//i.test(formattedWebsite)) {
+    formattedWebsite = `https://${formattedWebsite}`;
+  }
+
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.com",
     port: 465,
@@ -35,7 +41,7 @@ export default async function handler(
 
     // 1. Internal Notification Email (To You)
     const adminMailOptions = {
-      from: `"Opshore Contact Form" <${process.env.ZOHO_EMAIL}>`,
+      from: `"Opshore Contact Form" <${fromAddress}>`,
       to: process.env.ZOHO_EMAIL,
       replyTo: email,
       subject: `New Contact Form Submission from ${fullName}`,
@@ -43,7 +49,7 @@ export default async function handler(
         <h2>New Contact Inquiry</h2>
         <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Website:</strong> ${website || "N/A"}</p>
+        <p><strong>Website:</strong> ${formattedWebsite || "N/A"}</p>
         <p><strong>Use Case:</strong> ${useCase || "N/A"}</p>
         <p><strong>Message:</strong></p>
         <p>${message || "N/A"}</p>
@@ -52,10 +58,8 @@ export default async function handler(
 
     // 2. Auto-Reply Confirmation Email (To Submitter)
     const userAutoReplyOptions = {
-      //from: `"Opshore" <${process.env.ZOHO_EMAIL}>`,
       from: `"Opshore" <${fromAddress}>`,
       to: email,
-      //replyTo: process.env.ZOHO_EMAIL,
       replyTo: fromAddress,
       subject: "Thank you for contacting Opshore",
       html: `
@@ -67,7 +71,7 @@ export default async function handler(
           <p style="font-size: 0.9em; color: #666;">
             <strong>A summary of your inquiry:</strong><br />
             <strong>Use Case:</strong> ${useCase || "N/A"}<br />
-            <strong>Website:</strong> ${website || "N/A"}
+            <strong>Website:</strong> ${formattedWebsite || "N/A"}
           </p>
           <br />
           <p>Best regards,<br /><strong>The Opshore Team</strong></p>

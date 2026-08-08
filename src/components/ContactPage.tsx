@@ -123,7 +123,8 @@ export default function ContactPage({ active }: ContactPageProps) {
             <label htmlFor="website">Website</label>
             <input
               id="website"
-              type="url"
+              //type="url"
+              type="text"
               autoComplete="url"
               placeholder="https://"
               value={form.website}

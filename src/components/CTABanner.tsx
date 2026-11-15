@@ -8,7 +8,7 @@ interface CTABannerProps {
 
 export default function CTABanner({
   heading,
-  buttonLabel = "Book a free audit",
+  buttonLabel = "Book a Strategy Call",
   onNavigate,
 }: CTABannerProps) {
   return (

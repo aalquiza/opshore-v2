@@ -1,6 +1,7 @@
 import type { PageId } from "../types";
 import { USE_CASES } from "../data/content";
 import CTABanner from "./CTABanner";
+import ComparisonTable from "./ComparisonTable";
 
 interface UseCasesPageProps {
   active: boolean;
@@ -44,6 +45,7 @@ export default function UseCasesPage({ active, onNavigate }: UseCasesPageProps) 
         </div>
       ))}
 
+      <ComparisonTable />
       <CTABanner
         heading="Not sure which use case fits you?"
         onNavigate={onNavigate}

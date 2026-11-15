@@ -7,9 +7,12 @@ export type PageId =
   | "privacy"
   | "legal";
 
+export type HomeSection = "services" | "software" | "operations" | "approach";
+
 export interface NavItem {
   id: PageId;
   label: string;
+  section?: HomeSection;
 }
 
 export interface Pillar {
@@ -42,6 +45,12 @@ export interface Review {
 }
 
 export type UseCaseOption =
+  | "software-development"
+  | "saas-development"
+  | "web-app-development"
+  | "mobile-app-development"
+  | "ai-integrations"
+  | "operations-and-software"
   | "workflow-design"
   | "ops-support"
   | "crm-sales"

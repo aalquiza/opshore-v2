@@ -4,8 +4,8 @@ export default function Pillars() {
   return (
     <section className="content-section">
       <div className="section-head">
-        <div className="eyebrow">What we do</div>
-        <h2>How Opshore supports growing companies</h2>
+        <div className="eyebrow">Operations capabilities</div>
+        <h2>Operational support built around your business</h2>
       </div>
       <div className="pillars">
         {PILLARS.map((pillar) => (

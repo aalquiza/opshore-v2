@@ -70,13 +70,12 @@ export default function ContactPage({ active }: ContactPageProps) {
     >
       <div className="section-head contact-head">
         <div className="eyebrow">Get in touch</div>
-        <h2>Let's talk about your operations</h2>
+        <h2>Let's talk about what you're building</h2>
         <div className="contact-info">
           <p>
-            Whether you're drowning in manual tasks, scaling past what your
-            current team can handle, or just not sure where the bottleneck
-            actually is — that's what this conversation is for. No pressure, no sales script. 
-            Tell us where things are breaking, and we'll tell you honestly whether we're the right fit to fix it.
+            Whether you're planning a software product, improving day-to-day
+            operations, or looking for a partner to help with both, tell us what
+            you want to achieve. We'll explore the right next step together.
           </p>
           <p>Fill out the form below and we'll respond as soon as we can.</p>
         </div>
@@ -132,7 +131,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             />
           </div>
           <div className="field">
-            <label htmlFor="usecase">Use case</label>
+            <label htmlFor="usecase">What do you need help with?</label>
             <select
               id="usecase"
               autoComplete="off"
@@ -152,7 +151,7 @@ export default function ContactPage({ active }: ContactPageProps) {
             <textarea
               id="message"
               autoComplete="off"
-              placeholder="Tell us a bit about what you're running into"
+              placeholder="Tell us about your project or operational challenge"
               value={form.message}
               onChange={updateField("message")}
             />

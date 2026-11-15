@@ -8,9 +8,11 @@ import type {
 } from "../types";
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: "home", label: "What We Do" },
+  { id: "home", label: "What We Do", section: "services" },
+  { id: "home", label: "Software Development", section: "software" },
+  { id: "home", label: "Operations", section: "operations" },
   { id: "usecases", label: "Use Cases" },
-  { id: "reviews", label: "What Clients Say" },
+  { id: "reviews", label: "Clients" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -143,6 +145,12 @@ export const REVIEWS: Review[] = [
 ];
 
 export const USE_CASE_OPTIONS: { value: UseCaseOption; label: string }[] = [
+  { value: "software-development", label: "Custom Software Development" },
+  { value: "saas-development", label: "SaaS Product Development" },
+  { value: "web-app-development", label: "Web Application Development" },
+  { value: "mobile-app-development", label: "Mobile Application Development" },
+  { value: "ai-integrations", label: "AI, Automation & Integrations" },
+  { value: "operations-and-software", label: "Software Development + Operations" },
   { value: "workflow-design", label: "Workflow Design" },
   { value: "ops-support", label: "Ops Support" },
   { value: "crm-sales", label: "CRM & Sales" },

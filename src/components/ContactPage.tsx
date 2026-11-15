@@ -34,30 +34,61 @@ export default function ContactPage({ active }: ContactPageProps) {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (loading) return;
     setLoading(true);
     setError("");
     setSubmitted(false);
 
+    // Browser-side checks improve UX; the API MUST validate these again.
+    const payload: ContactFormState = {
+      firstName: form.firstName.trim(),
+      lastName: form.lastName.trim(),
+      email: form.email.trim(),
+      website: form.website.trim(),
+      useCase: form.useCase,
+      message: form.message.trim(),
+    };
+
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 15000);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        credentials: "same-origin",
       });
 
-      const result = await response.json();
+      // A routing problem could return index.html (HTTP 200). Do not
+      // misreport an HTML response as successful email delivery.
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.toLowerCase().includes("json")) {
+        setError("We couldn't confirm your enquiry was sent. Please try again later.");
+        return;
+      }
+      const result: unknown = await response.json();
+      // Only our API's explicit success:true indicates confirmed receipt.
+      const confirmedSuccess =
+        typeof result === "object" && result !== null &&
+        "success" in result && result.success === true;
 
-      if (response.ok) {
+      if (response.ok && confirmedSuccess) {
         setSubmitted(true);
         setForm(INITIAL_STATE);
+      } else if (response.status === 429) {
+        setError("Too many requests. Please try again later.");
       } else {
-        setError(result.error || "Something went wrong. Please try again.");
+        // Never display raw server errors or diagnostic details to users.
+        setError("We couldn't send your enquiry. Please try again later.");
       }
     } catch (err) {
-      setError("Network error. Please check your connection and try again.");
+      const timedOut = err instanceof Error && err.name === "AbortError";
+      setError(timedOut
+        ? "The request timed out. Please try again."
+        : "Connection error. Please try again later.");
     } finally {
+      window.clearTimeout(timeoutId);
       setLoading(false);
     }
   };
@@ -90,6 +121,7 @@ export default function ContactPage({ active }: ContactPageProps) {
                 id="fname"
                 type="text"
                 autoComplete="given-name"
+                maxLength={80}
                 required
                 value={form.firstName}
                 onChange={updateField("firstName")}
@@ -101,6 +133,7 @@ export default function ContactPage({ active }: ContactPageProps) {
                 id="lname"
                 type="text"
                 autoComplete="family-name"
+                maxLength={80}
                 required
                 value={form.lastName}
                 onChange={updateField("lastName")}
@@ -113,6 +146,7 @@ export default function ContactPage({ active }: ContactPageProps) {
               id="email"
               type="email"
               autoComplete="email"
+              maxLength={254}
               required
               value={form.email}
               onChange={updateField("email")}
@@ -125,6 +159,7 @@ export default function ContactPage({ active }: ContactPageProps) {
               //type="url"
               type="text"
               autoComplete="url"
+              maxLength={2048}
               placeholder="https://"
               value={form.website}
               onChange={updateField("website")}
@@ -152,6 +187,7 @@ export default function ContactPage({ active }: ContactPageProps) {
               id="message"
               autoComplete="off"
               placeholder="Tell us about your project or operational challenge"
+              maxLength={4000}
               value={form.message}
               onChange={updateField("message")}
             />
@@ -166,12 +202,12 @@ export default function ContactPage({ active }: ContactPageProps) {
           </button>
           
           {error && (
-            <div className="error-message" style={{ color: "#ef4444", marginTop: 12 }}>
+            <div className="error-message" role="alert" style={{ color: "#ef4444", marginTop: 12 }}>
               {error}
             </div>
           )}
 
-          <div className={`confirm${submitted ? " visible" : ""}`}>
+          <div className={`confirm${submitted ? " visible" : ""}`} role="status" aria-live="polite">
             Thanks for submitting — we'll be in touch.
           </div>
         </form>

@@ -37,6 +37,7 @@ export default function ReviewsPage({ active }: ReviewsPageProps) {
         <div
           className="review-card"
           style={{
+            gridColumn: "1 / -1",
             alignItems: "center",
             justifyContent: "center",
             color: "var(--mist)",

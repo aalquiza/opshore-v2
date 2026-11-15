@@ -65,7 +65,7 @@ export default async function handler(
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e4e4e4; border-radius: 8px;">
           <h2 style="color: #111; margin-top: 0;">Hi ${firstName},</h2>
-          <p>Thank you for reaching out to <strong>Opshore</strong>! We’ve received your message and our team will review it shortly.</p>
+          <p>Thank you for reaching out to <strong>Opshore</strong>! We've received your message and our team will review it shortly.</p>
           <p>We typically respond within <strong>24 business hours</strong>.</p>
           
           <div style="background-color: #f9f9f9; padding: 16px; border-radius: 6px; border-left: 4px solid #111; margin: 20px 0;">

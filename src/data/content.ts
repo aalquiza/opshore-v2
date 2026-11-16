@@ -82,6 +82,49 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
   },
 ];
 
+export const SOFTWARE_USE_CASES: UseCase[] = [
+  {
+    tag: "Custom Software",
+    title: "Custom Software & Internal Tools",
+    problem:
+      "Your team depends on spreadsheets, manual handoffs, or tools that don't fit how your business works.",
+    solution:
+      "We design and develop software tailored to your workflows, giving teams a clearer, more reliable way to work.",
+  },
+  {
+    tag: "SaaS & MVPs",
+    title: "SaaS & MVP Development",
+    problem:
+      "You have a product idea but need a practical path from concept to something users can try.",
+    solution:
+      "We help define the essential features and build an initial product that can be tested, refined, and expanded.",
+  },
+  {
+    tag: "Web & Mobile",
+    title: "Web & Mobile Applications",
+    problem:
+      "Customers or staff need a better way to access services, data, and everyday tasks.",
+    solution:
+      "We create user-focused web and mobile applications, including portals, dashboards, and business tools.",
+  },
+  {
+    tag: "Modernization",
+    title: "Software Modernization & Enhancement",
+    problem:
+      "An existing application is slow, hard to maintain, or no longer meets changing needs.",
+    solution:
+      "We assess and improve existing software, from user experience and performance to features and integrations.",
+  },
+  {
+    tag: "AI & Integrations",
+    title: "AI, Automation & System Integrations",
+    problem:
+      "Disconnected systems and repetitive tasks slow your team down.",
+    solution:
+      "We connect applications and apply practical automation and AI capabilities where they add clear value.",
+  },
+];
+
 export const USE_CASES: UseCase[] = [
   {
     tag: "Workflow Design",

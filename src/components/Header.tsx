@@ -58,6 +58,16 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
     };
   }, [menuOpen]);
 
+  const handleMenuToggle = () => {
+    // On long pages, bring the dropdown beneath the header into view before
+    // locking background scrolling. This also helps when sticky positioning
+    // varies between mobile browsers.
+    if (!menuOpen) {
+      window.scrollTo(0, 0);
+    }
+    setMenuOpen((open) => !open);
+  };
+
   const handleNavigate = (page: PageId, section?: HomeSection) => {
     setMenuOpen(false);
     onNavigate(page, section);
@@ -120,7 +130,7 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-controls="opshore-primary-links"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={handleMenuToggle}
         >
           <span />
           <span />

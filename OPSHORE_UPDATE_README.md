@@ -49,7 +49,7 @@
 - [ ] Obtain company approval for the website's updated content and design.
 - [ ] Obtain company review of Terms of Service and Privacy Policy for the expanded services.
 - [ ] Confirm the business mailbox received the contact form notification.
-- [ ] Confirm the Vercel Firewall rate limit behaves as intended. The rule is enabled, but HTTP 429 enforcement has not been independently tested.
+- [x] Vercel Firewall rate-limit enforcement verified on Preview: requests 1–5 returned HTTP 400 for invalid data; request 6 returned HTTP 429.
 - [ ] Complete final Pull Request review and confirm all required checks pass.
 - [ ] Obtain explicit authorization before merging into main.
 
@@ -111,12 +111,11 @@ Do not merge into `main` without explicit production approval.
 - Vercel Preview contact API: HTTP 200.
 - Automatic enquiry acknowledgement email: RECEIVED.
 - Vercel Preview deployment: SUCCESS.
-- Contact form firewall rate-limit rule: ENABLED.
+- Contact form firewall rate-limit rule: ENABLED and TESTED (HTTP 429 confirmed).
 
 ### Known limitations
 
 - Actual receipt of the business notification email has not been independently confirmed.
-- Firewall rate-limit enforcement has not yet been independently tested.
 - A low-severity development dependency advisory remained in the last full npm audit.
 - Offline email failure messages are expected when testing simulated delivery failures.
 - Successful automated tests do not guarantee the absence of security vulnerabilities.

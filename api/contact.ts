@@ -152,20 +152,42 @@ export default async function handler(req: ContactRequest, res: ContactResponse)
     return res.status(503).json({ error: "The contact form is temporarily unavailable." });
   }
 
+
+  const useCaseLabels = new Map<string, string>([
+    ["software-development", "Custom Software Development"],
+    ["saas-development", "SaaS Product Development"],
+    ["web-app-development", "Web Application Development"],
+    ["mobile-app-development", "Mobile Application Development"],
+    ["ai-integrations", "AI, Automation & Integrations"],
+    ["operations-and-software", "Software Development + Operations"],
+    ["workflow-design", "Workflow Design"],
+    ["ops-support", "Ops Support"],
+    ["crm-sales", "CRM & Sales"],
+    ["team-build-out", "Team Build-Out"],
+    ["lead-gen", "Lead Gen"],
+    ["marketing-ops", "Marketing Ops"],
+    ["other", "Other"],
+  ]);
+
+  const useCaseDisplay =
+    useCaseLabels.get(contact.useCase) || contact.useCase || "N/A";
+
+
   const fullName = `${contact.firstName} ${contact.lastName}`;
   const safe = {
     firstName: escapeHtml(contact.firstName),
     fullName: escapeHtml(fullName),
     email: escapeHtml(contact.email),
     website: escapeHtml(contact.website || "N/A"),
-    useCase: escapeHtml(contact.useCase || "N/A"),
+    useCase: escapeHtml(useCaseDisplay),
     message: escapeHtml(contact.message || "N/A"),
   };
+
   const textSummary = [
     `Name: ${fullName}`,
     `Email: ${contact.email}`,
     `Website: ${contact.website || "N/A"}`,
-    `Use Case: ${contact.useCase || "N/A"}`,
+    `Use Case: ${useCaseDisplay}`,
     `Message:\n${contact.message || "N/A"}`,
   ].join("\n\n");
   const htmlSummary = `

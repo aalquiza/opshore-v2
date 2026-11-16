@@ -88,6 +88,24 @@ async function call(method = 'POST', body = valid, type = 'application/json') {
   assert.equal(sends[0].disableFileAccess, true);
   assert.equal(sends[0].disableUrlAccess, true);
 
+
+  // Verify that emails use readable service labels.
+  assert(sends[0].text.includes('Use Case: Custom Software Development'));
+  assert(sends[0].html.includes('Custom Software Development'));
+  assert(sends[1].text.includes('Use Case: Custom Software Development'));
+  assert(sends[1].html.includes('Custom Software Development'));
+
+  // Verify the combined Software Development + Operations option.
+  sends = [];
+  response = await call('POST', {
+    ...valid,
+    useCase: 'operations-and-software'
+  });
+
+  assert.equal(response.code, 200);
+  assert(sends[0].text.includes('Use Case: Software Development + Operations'));
+  assert(sends[1].html.includes('Software Development + Operations'));
+
   sends = []; response = await call('GET');
   assert.equal(response.code, 405);
   assert.equal(sends.length, 0);

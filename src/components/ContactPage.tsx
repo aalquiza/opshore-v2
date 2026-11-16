@@ -50,7 +50,7 @@ export default function ContactPage({ active }: ContactPageProps) {
     };
 
     const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), 15000);
+    const timeoutId = window.setTimeout(() => controller.abort(), 60000);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -85,7 +85,7 @@ export default function ContactPage({ active }: ContactPageProps) {
     } catch (err) {
       const timedOut = err instanceof Error && err.name === "AbortError";
       setError(timedOut
-        ? "The request timed out. Please try again."
+        ? "We couldn't confirm whether your enquiry was received. Please contact us directly if you don't receive an acknowledgement."
         : "Connection error. Please try again later.");
     } finally {
       window.clearTimeout(timeoutId);

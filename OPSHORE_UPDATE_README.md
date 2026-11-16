@@ -1,38 +1,131 @@
-# Opshore — Two-Service Homepage Update (Development Draft)
+# Opshore — Two-Service Homepage Update (Pre-Production Review)
 
 **Purpose:** Introduce Software Development and Operations & Managed Execution as equally prominent services while preserving Opshore's existing branding, React/Vite architecture, operational use cases, testimonials, enquiry integration, legal pages and cookie consent.
 
-**Status:** Local development draft; NOT deployed, NOT merged, NOT approved for production.
+**Status:** Preview deployed and visually verified. Local production build and offline security tests passed. Contact form submission and customer acknowledgement tested successfully on Vercel Preview. Business mailbox receipt remains unverified. Awaiting final review and production approval.
+
 **Target Git branch:** `opshore-homepage-update` (NOT `main`).
 
-## Changes in this draft
-- Rebuilt `src/components/HomePage.tsx` as a responsive two-service homepage with an integrated hero, two equal service cards, detailed service sections, operations pillars, engagement models, benefits, process, testimonials, and CTA.
-- Updated navbar to link directly to Software Development and Operations sections, plus existing Use Cases, Clients, and Contact pages.
-- Updated contact wording and added Software Development enquiry options, preserving the existing POST to `/api/contact`.
-- Kept existing four operational pillars and six operations use cases; moved the original agency comparison table to the Use Cases page so the homepage has balanced service visibility.
-- Included your corrected testimonials grid layout with `gridColumn: "1 / -1"` on the coming-soon tile.
-- Updated the HTML page title and description.
-- Left Terms, Privacy, Legal, cookie consent, server/API, and Vercel config untouched.
+## Changes implemented
+- Rebuilt `src/components/HomePage.tsx` as a responsive two-service homepage, presenting Software Development and Operations & Managed Execution.
+- Updated desktop and mobile navigation, including the hamburger menu and accessibility improvements.
+- Updated contact form wording and enquiry categories while retaining the `/api/contact` endpoint.
+- Preserved the operational capabilities, use cases, and client testimonials.
+- Updated the Reviews page, page title, descriptions, and responsive styling.
+- Strengthened `api/contact.ts` with input validation, request-size limits, HTML escaping, and safer email handling.
+- Added security headers through `vercel.json` and verified them on Vercel Preview.
+- Configured a Vercel Firewall rate limit for POST requests to `/api/contact`: 5 requests per 600 seconds per IP address.
+- Updated project dependencies and removed the unused `@vercel/node` package.
+- Added automated security and contact API tests.
+- Updated `.gitignore` to exclude generated TypeScript build-cache files.
+- Preserved the existing legal pages and cookie consent functionality.
 
-## Very important checks before production
-1. **Service claims:** Confirm that custom software, SaaS, web/mobile apps, AI/automation, API integrations and ongoing support are services Opshore offers. Edit the copy if needed.
-2. **Enquiry API:** This ZIP does NOT include the Vercel `/api/contact` backend. The existing React handler is unchanged, but confirm the API accepts the new `useCase` option strings before production, and complete a safe end-to-end form test on a preview environment with server access.
-3. **Legal:** Ask the company to review the existing Terms and Privacy copy against its new software development offerings.
-4. **Deployment:** Confirm Vercel's production branch remains `main` and that the `opshore-v2` repository is actually the project connected to the production deployment.
-5. **Testing:** Run `npm run build` on your Mac; manually inspect desktop and mobile, all navigation links, both testimonials, legal/footer links, cookie consent, and the contact page. Do not assume this draft has passed full tests.
 
-## Safest installation method (on your Mac)
-1. Confirm you're on GitHub Desktop branch `opshore-homepage-update`.
-2. **Commit or otherwise safely preserve any uncommitted local changes** before applying this package. In particular, preserve your previous ReviewsPage fix (also included in the package).
-3. Download `Opshore_Merged_React_Update_PATCH.zip` from ChatGPT into `~/Downloads` and expand it; it contains the files and matching `src/...` folder structure.
-4. Open VS Code in your `opshore-v2` repository. Compare the patch files with the existing files first, then copy the updated `src` files and `index.html` into the matching paths in your repo. Do not replace `.env.local`, `.git`, or `node_modules`.
-5. With macOS Terminal in your existing `opshore-v2` directory, run `npm run dev` and open the displayed local URL.
-6. Run `npm run build`. If it fails, do NOT push; share the terminal error here.
-7. Review GitHub Desktop Changes and confirm you're on the new branch. Commit and push only after local checks. Never merge into `main` before client approval.
+## Production readiness and outstanding checks
 
-If you prefer to preview the entire source away from the repository, use the separate `Opshore_Merged_React_Source_DRAFT.zip` archive. That archive intentionally excludes API implementation, local secrets, Git history, and `node_modules`. It needs `npm install` before running on its own.
+### Completed verification
 
-## Test scope and limitations
-- TypeScript/TSX syntax was checked for the local source: **PASS**.
-- A full Vite TypeScript build in the assistant's execution environment could NOT be completed because npm dependencies were unavailable and installation timed out. **Run `npm run build` on your Mac.**
-- The form UI still uses the original `/api/contact` endpoint; backend behavior is not tested and may differ in Vite local dev vs Vercel.
+- [x] Homepage redesign reviewed on desktop and mobile.
+- [x] Navigation links, buttons, and mobile hamburger menu tested.
+- [x] Software Development and Operations sections verified.
+- [x] Both client testimonials displayed correctly.
+- [x] Contact page and updated enquiry categories verified.
+- [x] Privacy Policy and Terms of Service pages open correctly.
+- [x] Local TypeScript and Vite production build passed.
+- [x] 12 automated source/configuration security checks passed.
+- [x] 15 offline contact API security and behavior checks passed.
+- [x] Production dependency audit reported zero vulnerabilities.
+- [x] Security headers verified on Vercel Preview.
+- [x] Contact form submitted successfully on Vercel Preview.
+- [x] Automatic acknowledgement email received.
+- [x] Vercel logs confirmed a successful POST /api/contact (HTTP 200).
+- [x] Vercel Firewall contact form rate-limit rule created and enabled.
+- [x] GitHub repository and Vercel integration verified.
+- [x] Vercel production branch confirmed as main.
+
+### Outstanding verification and approval
+
+- [ ] Confirm Opshore's advertised software development and operations services are accurate and approved.
+- [ ] Obtain company approval for the website's updated content and design.
+- [ ] Obtain company review of Terms of Service and Privacy Policy for the expanded services.
+- [ ] Confirm the business mailbox received the contact form notification.
+- [ ] Confirm the Vercel Firewall rate limit behaves as intended. The rule is enabled, but HTTP 429 enforcement has not been independently tested.
+- [ ] Complete final Pull Request review and confirm all required checks pass.
+- [ ] Obtain explicit authorization before merging into main.
+
+### Production deployment policy
+
+The opshore-homepage-update branch is for pre-production changes.
+
+Do not merge into main or promote the Preview deployment to production until outstanding checks and approvals are addressed.
+
+Preserve existing production configuration, environment variables, and working functionality.
+
+
+## Development and verification workflow
+
+The Opshore redesign has been integrated into the existing `opshore-v2` React/Vite project.
+
+The original ZIP installation instructions are no longer applicable.
+
+### Local development
+
+1. Work on the `opshore-homepage-update` branch.
+2. Preserve existing project files, backups, and Git history.
+3. Run `npm install` when dependencies need to be installed.
+4. Run `npm run dev` for local development.
+5. Run `npm run build` to verify the production build.
+6. Run the automated tests:
+
+   ```bash
+   node tests/security-static.mjs
+   node tests/contact-smoke.cjs
+   ```
+
+7. Run `npm audit --omit=dev` to check production dependencies.
+8. Review changes before committing and pushing.
+
+### Deployment workflow
+
+- GitHub repository: `aalquiza/opshore-v2`
+- Development branch: `opshore-homepage-update`
+- Production branch: `main`
+- Hosting platform: Vercel
+- Deployment status: Preview verified; production merge pending approval.
+
+Changes pushed to the development branch are reviewed through the existing GitHub Pull Request.
+
+Do not merge into `main` without explicit production approval.
+
+## Test results and limitations
+
+### Verified results
+
+- TypeScript and Vite production build: PASS.
+- Static security tests: 12 PASS.
+- Offline contact handler tests: 15 PASS.
+- Production dependency audit: 0 vulnerabilities.
+- Desktop and mobile visual verification: 8/8 PASS.
+- Navigation and mobile menu behavior: PASS.
+- Security response headers: VERIFIED.
+- Vercel Preview contact API: HTTP 200.
+- Automatic enquiry acknowledgement email: RECEIVED.
+- Vercel Preview deployment: SUCCESS.
+- Contact form firewall rate-limit rule: ENABLED.
+
+### Known limitations
+
+- Actual receipt of the business notification email has not been independently confirmed.
+- Firewall rate-limit enforcement has not yet been independently tested.
+- A low-severity development dependency advisory remained in the last full npm audit.
+- Offline email failure messages are expected when testing simulated delivery failures.
+- Successful automated tests do not guarantee the absence of security vulnerabilities.
+- Service descriptions, legal content, and production deployment still require company review and approval.
+
+## Production release status
+
+**Current status:** Pre-production review.
+
+The updated website has passed the completed Preview checks, but production release is not yet authorized.
+
+Keep the development branch separate from `main` until all required approvals are obtained.

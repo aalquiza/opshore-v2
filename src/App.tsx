@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import type { PageId } from "./types";
+import type { HomeSection, PageId } from "./types";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import UseCasesPage from "./components/UseCasesPage";
@@ -17,9 +17,15 @@ import {
 export default function App() {
   const [page, setPage] = useState<PageId>("home");
 
-  const goTo = useCallback((next: PageId) => {
+  const goTo = useCallback((next: PageId, section?: HomeSection) => {
     setPage(next);
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    if (section && next === "home") {
+      window.requestAnimationFrame(() => {
+        document.getElementById(section)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    }
   }, []);
 
   return (

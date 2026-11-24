@@ -996,7 +996,7 @@ nav.wrap {
   padding: clamp(68px, 8vw, 116px) 0 86px;
 }
 .merged-hero h1 { font-size: clamp(2.5rem, 4.25vw, 3.75rem); line-height: 1.13; margin: 24px 0 22px; }
-.merged-hero h1 span { color: var(--steel); }
+.merged-hero h1 span { color: #6CCEF9; }
 .merged-lead { color: #7f8e9b; font-size: 1.05rem; max-width: 60ch; margin-bottom: 28px; }
 .merged-button-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .merged-microcopy { color: #8e9da8; font-size: 0.76rem; margin-top: 24px; }
